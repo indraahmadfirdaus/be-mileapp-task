@@ -15,7 +15,7 @@ const authMiddleware = (req, res, next) => {
       return errorResponse(res, 'No token provided, authorization denied', 401);
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'default-secret');
     
     req.user = decoded;
     next();
